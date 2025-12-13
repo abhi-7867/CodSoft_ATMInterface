@@ -12,4 +12,12 @@ public class BankAccount {
     public boolean verifyPin(int enteredPin) {
         return this.pin == enteredPin;
     }
+    
+    public double getBalance() {
+        return balance;
+    }
+    
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 }
