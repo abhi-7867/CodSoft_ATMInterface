@@ -1,4 +1,5 @@
 public class BankAccount {
+    // Core account state
     private String accountNumber;
     private int pin;
     private double balance;
