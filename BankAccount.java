@@ -1,5 +1,4 @@
 public class BankAccount {
-    // Core account state
     private String accountNumber;
     private int pin;
     private double balance;
@@ -21,5 +20,10 @@ public class BankAccount {
     
     public String getAccountNumber() {
         return accountNumber;
+    }
+    
+    public boolean deposit(double amount) {
+        balance += amount;
+        return true;
     }
 }
