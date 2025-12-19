@@ -26,8 +26,11 @@ public class BankAccount {
         if (amount <= 0) {
             return false;
         }
-        balance -= amount;
-        return true;
+        if (balance - amount >= MIN_BALANCE) {
+            balance -= amount;
+            return true;
+        }
+        return false;
     }
     
     public boolean deposit(double amount) {
