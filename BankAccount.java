@@ -2,16 +2,24 @@ public class BankAccount {
     private String accountNumber;
     private int pin;
     private double balance;
+    private int failedPinAttempts;
+    private static final int MAX_PIN_ATTEMPTS = 3;
     private static final double MIN_BALANCE = 0.0;
     
     public BankAccount(String accountNumber, int pin, double initialBalance) {
         this.accountNumber = accountNumber;
         this.pin = pin;
         this.balance = initialBalance >= MIN_BALANCE ? initialBalance : MIN_BALANCE;
+        this.failedPinAttempts = 0;
     }
     
     public boolean verifyPin(int enteredPin) {
-        return this.pin == enteredPin;
+        if (this.pin == enteredPin) {
+            return true;
+        } else {
+            failedPinAttempts++;
+            return false;
+        }
     }
     
     public double getBalance() {
