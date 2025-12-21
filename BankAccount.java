@@ -22,6 +22,10 @@ public class BankAccount {
         }
     }
     
+    public boolean isLocked() {
+        return failedPinAttempts >= MAX_PIN_ATTEMPTS;
+    }
+    
     public double getBalance() {
         return balance;
     }
