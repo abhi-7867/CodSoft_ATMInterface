@@ -15,6 +15,7 @@ public class BankAccount {
     
     public boolean verifyPin(int enteredPin) {
         if (this.pin == enteredPin) {
+            failedPinAttempts = 0; // Reset failed attempts on successful login
             return true;
         } else {
             failedPinAttempts++;
