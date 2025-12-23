@@ -53,4 +53,12 @@ public class BankAccount {
         balance += amount;
         return true;
     }
+    
+    public int getFailedPinAttempts() {
+        return failedPinAttempts;
+    }
+    
+    public void resetFailedPinAttempts() {
+        failedPinAttempts = 0;
+    }
 }
