@@ -1,7 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccount {
     private String accountNumber;
     private int pin;
     private double balance;
+    private List<Transaction> transactionHistory;
     private int failedPinAttempts;
     private static final int MAX_PIN_ATTEMPTS = 3;
     private static final double MIN_BALANCE = 0.0;
@@ -10,12 +14,13 @@ public class BankAccount {
         this.accountNumber = accountNumber;
         this.pin = pin;
         this.balance = initialBalance >= MIN_BALANCE ? initialBalance : MIN_BALANCE;
+        this.transactionHistory = new ArrayList<>();
         this.failedPinAttempts = 0;
     }
     
     public boolean verifyPin(int enteredPin) {
         if (this.pin == enteredPin) {
-            failedPinAttempts = 0; // Reset failed attempts on successful login
+            failedPinAttempts = 0;
             return true;
         } else {
             failedPinAttempts++;
