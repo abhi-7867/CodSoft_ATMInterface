@@ -56,7 +56,13 @@ public class BankAccount {
             return false;
         }
         balance += amount;
+        addTransaction("DEPOSIT", amount);
         return true;
+    }
+    
+    private void addTransaction(String type, double amount) {
+        Transaction transaction = new Transaction(type, amount, balance);
+        transactionHistory.add(transaction);
     }
     
     public int getFailedPinAttempts() {
