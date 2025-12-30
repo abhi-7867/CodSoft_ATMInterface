@@ -46,6 +46,7 @@ public class BankAccount {
         }
         if (balance - amount >= MIN_BALANCE) {
             balance -= amount;
+            addTransaction("WITHDRAWAL", amount);
             return true;
         }
         return false;
