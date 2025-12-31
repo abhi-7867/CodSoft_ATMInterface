@@ -66,6 +66,15 @@ public class BankAccount {
         transactionHistory.add(transaction);
     }
     
+    public void addBalanceCheckTransaction() {
+        Transaction transaction = new Transaction("BALANCE_CHECK", 0.0, balance);
+        transactionHistory.add(transaction);
+    }
+    
+    public List<Transaction> getTransactionHistory() {
+        return new ArrayList<>(transactionHistory);
+    }
+    
     public int getFailedPinAttempts() {
         return failedPinAttempts;
     }
