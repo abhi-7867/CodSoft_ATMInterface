@@ -26,6 +26,33 @@ public class ATM {
     public boolean isAuthenticated() {
         return currentAccount != null;
     }
+    
+    public TransactionResult withdraw(double amount) {
+        if (!isAuthenticated()) {
+            return new TransactionResult(false, "Error: No account is currently authenticated.");
+        }
+        if (amount < MIN_WITHDRAWAL) {
+            return new TransactionResult(false, 
+                String.format("Error: Minimum withdrawal amount is $%.2f", MIN_WITHDRAWAL));
+        }
+        if (amount > MAX_WITHDRAWAL) {
+            return new TransactionResult(false, 
+                String.format("Error: Maximum withdrawal amount is $%.2f", MAX_WITHDRAWAL));
+        }
+        if (currentAccount.getBalance() < amount) {
+            return new TransactionResult(false, 
+                String.format("Error: Insufficient balance. Current balance: $%.2f", 
+                    currentAccount.getBalance()));
+        }
+        boolean success = currentAccount.withdraw(amount);
+        if (success) {
+            return new TransactionResult(true, 
+                String.format("Successfully withdrew $%.2f. New balance: $%.2f", 
+                    amount, currentAccount.getBalance()));
+        } else {
+            return new TransactionResult(false, "Error: Withdrawal failed.");
+        }
+    }
 }
 
 class TransactionResult {
