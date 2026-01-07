@@ -53,6 +53,28 @@ public class ATM {
             return new TransactionResult(false, "Error: Withdrawal failed.");
         }
     }
+    
+    public TransactionResult deposit(double amount) {
+        if (!isAuthenticated()) {
+            return new TransactionResult(false, "Error: No account is currently authenticated.");
+        }
+        if (amount < MIN_DEPOSIT) {
+            return new TransactionResult(false, 
+                String.format("Error: Minimum deposit amount is $%.2f", MIN_DEPOSIT));
+        }
+        if (amount > MAX_DEPOSIT) {
+            return new TransactionResult(false, 
+                String.format("Error: Maximum deposit amount is $%.2f", MAX_DEPOSIT));
+        }
+        boolean success = currentAccount.deposit(amount);
+        if (success) {
+            return new TransactionResult(true, 
+                String.format("Successfully deposited $%.2f. New balance: $%.2f", 
+                    amount, currentAccount.getBalance()));
+        } else {
+            return new TransactionResult(false, "Error: Deposit failed.");
+        }
+    }
 }
 
 class TransactionResult {
