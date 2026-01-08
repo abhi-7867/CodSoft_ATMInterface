@@ -75,6 +75,16 @@ public class ATM {
             return new TransactionResult(false, "Error: Deposit failed.");
         }
     }
+    
+    public TransactionResult checkBalance() {
+        if (!isAuthenticated()) {
+            return new TransactionResult(false, "Error: No account is currently authenticated.");
+        }
+        double balance = currentAccount.getBalance();
+        currentAccount.addBalanceCheckTransaction();
+        return new TransactionResult(true, 
+            String.format("Current balance: $%.2f", balance));
+    }
 }
 
 class TransactionResult {
