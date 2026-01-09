@@ -85,6 +85,23 @@ public class ATM {
         return new TransactionResult(true, 
             String.format("Current balance: $%.2f", balance));
     }
+    
+    public TransactionResult getTransactionHistory() {
+        if (!isAuthenticated()) {
+            return new TransactionResult(false, "Error: No account is currently authenticated.");
+        }
+        var history = currentAccount.getTransactionHistory();
+        if (history.isEmpty()) {
+            return new TransactionResult(true, "No transaction history available.");
+        }
+        StringBuilder historyText = new StringBuilder("Transaction History:\n");
+        historyText.append("=".repeat(60)).append("\n");
+        for (Transaction transaction : history) {
+            historyText.append(transaction.toString()).append("\n");
+        }
+        historyText.append("=".repeat(60));
+        return new TransactionResult(true, historyText.toString());
+    }
 }
 
 class TransactionResult {
