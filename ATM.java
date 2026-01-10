@@ -102,6 +102,26 @@ public class ATM {
         historyText.append("=".repeat(60));
         return new TransactionResult(true, historyText.toString());
     }
+    
+    public BankAccount getCurrentAccount() {
+        return currentAccount;
+    }
+    
+    public static double getMinWithdrawal() {
+        return MIN_WITHDRAWAL;
+    }
+    
+    public static double getMaxWithdrawal() {
+        return MAX_WITHDRAWAL;
+    }
+    
+    public static double getMinDeposit() {
+        return MIN_DEPOSIT;
+    }
+    
+    public static double getMaxDeposit() {
+        return MAX_DEPOSIT;
+    }
 }
 
 class TransactionResult {
