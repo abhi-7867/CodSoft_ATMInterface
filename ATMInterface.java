@@ -11,5 +11,12 @@ public class ATMInterface {
         this.atm = new ATM();
         this.accounts = new HashMap<>();
         this.scanner = new Scanner(System.in);
+        initializeSampleAccounts();
+    }
+    
+    private void initializeSampleAccounts() {
+        accounts.put("123456", new BankAccount("123456", 1234, 5000.0));
+        accounts.put("789012", new BankAccount("789012", 5678, 2500.0));
+        accounts.put("345678", new BankAccount("345678", 9012, 10000.0));
     }
 }
