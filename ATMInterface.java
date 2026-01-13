@@ -19,4 +19,10 @@ public class ATMInterface {
         accounts.put("789012", new BankAccount("789012", 5678, 2500.0));
         accounts.put("345678", new BankAccount("345678", 9012, 10000.0));
     }
+    
+    private void displayWelcomeBanner() {
+        System.out.println("\n" + "=".repeat(60));
+        System.out.println("        WELCOME TO PREMIUM ATM SYSTEM");
+        System.out.println("=".repeat(60) + "\n");
+    }
 }
