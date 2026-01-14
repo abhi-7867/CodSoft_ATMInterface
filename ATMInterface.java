@@ -25,4 +25,17 @@ public class ATMInterface {
         System.out.println("        WELCOME TO PREMIUM ATM SYSTEM");
         System.out.println("=".repeat(60) + "\n");
     }
+    
+    private void displayMainMenu() {
+        System.out.println("\n" + "-".repeat(60));
+        System.out.println("                    MAIN MENU");
+        System.out.println("-".repeat(60));
+        System.out.println("1. Check Balance");
+        System.out.println("2. Withdraw Money");
+        System.out.println("3. Deposit Money");
+        System.out.println("4. Transaction History");
+        System.out.println("5. Logout");
+        System.out.println("-".repeat(60));
+        System.out.print("Please select an option (1-5): ");
+    }
 }
