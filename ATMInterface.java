@@ -20,30 +20,15 @@ public class ATMInterface {
         accounts.put("345678", new BankAccount("345678", 9012, 10000.0));
     }
     
-    private void displayWelcomeBanner() {
+    private void handleWithdraw() {
         System.out.println("\n" + "=".repeat(60));
-        System.out.println("        WELCOME TO PREMIUM ATM SYSTEM");
-        System.out.println("=".repeat(60) + "\n");
-    }
-    
-    private void displayMainMenu() {
-        System.out.println("\n" + "-".repeat(60));
-        System.out.println("                    MAIN MENU");
-        System.out.println("-".repeat(60));
-        System.out.println("1. Check Balance");
-        System.out.println("2. Withdraw Money");
-        System.out.println("3. Deposit Money");
-        System.out.println("4. Transaction History");
-        System.out.println("5. Logout");
-        System.out.println("-".repeat(60));
-        System.out.print("Please select an option (1-5): ");
-    }
-    
-    private void handleCheckBalance() {
-        System.out.println("\n" + "=".repeat(60));
-        System.out.println("              CHECK BALANCE");
+        System.out.println("              WITHDRAW MONEY");
         System.out.println("=".repeat(60));
-        TransactionResult result = atm.checkBalance();
+        System.out.printf("Minimum: $%.2f | Maximum: $%.2f\n", 
+            ATM.getMinWithdrawal(), ATM.getMaxWithdrawal());
+        System.out.print("\nEnter amount to withdraw: $");
+        double amount = Double.parseDouble(scanner.nextLine().trim());
+        TransactionResult result = atm.withdraw(amount);
         if (result.isSuccess()) {
             System.out.println("\n✅ " + result.getMessage());
         } else {
