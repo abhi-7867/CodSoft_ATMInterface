@@ -20,15 +20,15 @@ public class ATMInterface {
         accounts.put("345678", new BankAccount("345678", 9012, 10000.0));
     }
     
-    private void handleWithdraw() {
+    private void handleDeposit() {
         System.out.println("\n" + "=".repeat(60));
-        System.out.println("              WITHDRAW MONEY");
+        System.out.println("              DEPOSIT MONEY");
         System.out.println("=".repeat(60));
         System.out.printf("Minimum: $%.2f | Maximum: $%.2f\n", 
-            ATM.getMinWithdrawal(), ATM.getMaxWithdrawal());
-        System.out.print("\nEnter amount to withdraw: $");
+            ATM.getMinDeposit(), ATM.getMaxDeposit());
+        System.out.print("\nEnter amount to deposit: $");
         double amount = Double.parseDouble(scanner.nextLine().trim());
-        TransactionResult result = atm.withdraw(amount);
+        TransactionResult result = atm.deposit(amount);
         if (result.isSuccess()) {
             System.out.println("\n✅ " + result.getMessage());
         } else {
