@@ -14,17 +14,14 @@ public class ATMInterface {
         initializeSampleAccounts();
     }
     
-    private void handleTransactionHistory() {
+    private void handleLogout() {
         System.out.println("\n" + "=".repeat(60));
-        System.out.println("           TRANSACTION HISTORY");
-        System.out.println("=".repeat(60));
-        TransactionResult result = atm.getTransactionHistory();
-        System.out.println("\n" + result.getMessage());
-        pressEnterToContinue();
-    }
-    
-    private void pressEnterToContinue() {
-        System.out.print("\nPress Enter to continue...");
-        scanner.nextLine();
+        if (atm.getCurrentAccount() != null) {
+            System.out.println("Thank you for using Premium ATM System!");
+            System.out.println("Account: " + atm.getCurrentAccount().getAccountNumber());
+            System.out.println("Logging out...");
+        }
+        System.out.println("=".repeat(60) + "\n");
+        atm.logout();
     }
 }
