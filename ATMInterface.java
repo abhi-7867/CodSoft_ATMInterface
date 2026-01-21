@@ -1,27 +1,16 @@
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ATMInterface {
-    private ATM atm;
-    private Map<String, BankAccount> accounts;
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
     
-    public ATMInterface() {
-        this.atm = new ATM();
-        this.accounts = new HashMap<>();
-        this.scanner = new Scanner(System.in);
-        initializeSampleAccounts();
-    }
-    
-    private void handleLogout() {
-        System.out.println("\n" + "=".repeat(60));
-        if (atm.getCurrentAccount() != null) {
-            System.out.println("Thank you for using Premium ATM System!");
-            System.out.println("Account: " + atm.getCurrentAccount().getAccountNumber());
-            System.out.println("Logging out...");
+    private int getIntInput() {
+        while (true) {
+            try {
+                String input = scanner.nextLine().trim();
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input. Please enter a valid number: ");
+            }
         }
-        System.out.println("=".repeat(60) + "\n");
-        atm.logout();
     }
 }
