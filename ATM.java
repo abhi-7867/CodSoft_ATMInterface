@@ -9,9 +9,11 @@ public class ATM {
         if (account == null) {
             return false;
         }
+        
         if (account.isLocked()) {
             return false;
         }
+        
         boolean isValid = account.verifyPin(pin);
         if (isValid) {
             this.currentAccount = account;
@@ -31,19 +33,23 @@ public class ATM {
         if (!isAuthenticated()) {
             return new TransactionResult(false, "Error: No account is currently authenticated.");
         }
+        
         if (amount < MIN_WITHDRAWAL) {
             return new TransactionResult(false, 
                 String.format("Error: Minimum withdrawal amount is $%.2f", MIN_WITHDRAWAL));
         }
+        
         if (amount > MAX_WITHDRAWAL) {
             return new TransactionResult(false, 
                 String.format("Error: Maximum withdrawal amount is $%.2f", MAX_WITHDRAWAL));
         }
+        
         if (currentAccount.getBalance() < amount) {
             return new TransactionResult(false, 
                 String.format("Error: Insufficient balance. Current balance: $%.2f", 
                     currentAccount.getBalance()));
         }
+        
         boolean success = currentAccount.withdraw(amount);
         if (success) {
             return new TransactionResult(true, 
@@ -58,14 +64,17 @@ public class ATM {
         if (!isAuthenticated()) {
             return new TransactionResult(false, "Error: No account is currently authenticated.");
         }
+        
         if (amount < MIN_DEPOSIT) {
             return new TransactionResult(false, 
                 String.format("Error: Minimum deposit amount is $%.2f", MIN_DEPOSIT));
         }
+        
         if (amount > MAX_DEPOSIT) {
             return new TransactionResult(false, 
                 String.format("Error: Maximum deposit amount is $%.2f", MAX_DEPOSIT));
         }
+        
         boolean success = currentAccount.deposit(amount);
         if (success) {
             return new TransactionResult(true, 
@@ -80,6 +89,7 @@ public class ATM {
         if (!isAuthenticated()) {
             return new TransactionResult(false, "Error: No account is currently authenticated.");
         }
+        
         double balance = currentAccount.getBalance();
         currentAccount.addBalanceCheckTransaction();
         return new TransactionResult(true, 
@@ -90,16 +100,19 @@ public class ATM {
         if (!isAuthenticated()) {
             return new TransactionResult(false, "Error: No account is currently authenticated.");
         }
+        
         var history = currentAccount.getTransactionHistory();
         if (history.isEmpty()) {
             return new TransactionResult(true, "No transaction history available.");
         }
+        
         StringBuilder historyText = new StringBuilder("Transaction History:\n");
         historyText.append("=".repeat(60)).append("\n");
         for (Transaction transaction : history) {
             historyText.append(transaction.toString()).append("\n");
         }
         historyText.append("=".repeat(60));
+        
         return new TransactionResult(true, historyText.toString());
     }
     
