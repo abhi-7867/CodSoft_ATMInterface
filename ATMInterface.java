@@ -2,11 +2,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * ATMInterface class provides the main user interface for the ATM system
+ * Handles user interactions, menu display, and input validation
+ */
 public class ATMInterface {
     private ATM atm;
     private Map<String, BankAccount> accounts;
     private Scanner scanner;
     
+    /**
+     * Constructor to initialize the ATM interface
+     */
     public ATMInterface() {
         this.atm = new ATM();
         this.accounts = new HashMap<>();
@@ -14,18 +21,27 @@ public class ATMInterface {
         initializeSampleAccounts();
     }
     
+    /**
+     * Initialize sample bank accounts for demonstration
+     */
     private void initializeSampleAccounts() {
         accounts.put("123456", new BankAccount("123456", 1234, 5000.0));
         accounts.put("789012", new BankAccount("789012", 5678, 2500.0));
         accounts.put("345678", new BankAccount("345678", 9012, 10000.0));
     }
     
+    /**
+     * Display welcome banner
+     */
     private void displayWelcomeBanner() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("        WELCOME TO PREMIUM ATM SYSTEM");
         System.out.println("=".repeat(60) + "\n");
     }
     
+    /**
+     * Display the main menu options
+     */
     private void displayMainMenu() {
         System.out.println("\n" + "-".repeat(60));
         System.out.println("                    MAIN MENU");
@@ -39,6 +55,9 @@ public class ATMInterface {
         System.out.print("Please select an option (1-5): ");
     }
     
+    /**
+     * Start the ATM interface application
+     */
     public void start() {
         displayWelcomeBanner();
         
@@ -74,6 +93,10 @@ public class ATMInterface {
         }
     }
     
+    /**
+     * Handle user login
+     * @return true if login successful, false otherwise
+     */
     private boolean login() {
         System.out.println("\n" + "-".repeat(60));
         System.out.println("                    LOGIN");
@@ -114,6 +137,9 @@ public class ATMInterface {
         return authenticated;
     }
     
+    /**
+     * Handle check balance operation
+     */
     private void handleCheckBalance() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("              CHECK BALANCE");
@@ -129,6 +155,9 @@ public class ATMInterface {
         pressEnterToContinue();
     }
     
+    /**
+     * Handle withdraw operation
+     */
     private void handleWithdraw() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("              WITHDRAW MONEY");
@@ -149,6 +178,9 @@ public class ATMInterface {
         pressEnterToContinue();
     }
     
+    /**
+     * Handle deposit operation
+     */
     private void handleDeposit() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("              DEPOSIT MONEY");
@@ -169,6 +201,9 @@ public class ATMInterface {
         pressEnterToContinue();
     }
     
+    /**
+     * Handle transaction history display
+     */
     private void handleTransactionHistory() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("           TRANSACTION HISTORY");
@@ -180,6 +215,9 @@ public class ATMInterface {
         pressEnterToContinue();
     }
     
+    /**
+     * Handle logout operation
+     */
     private void handleLogout() {
         System.out.println("\n" + "=".repeat(60));
         if (atm.getCurrentAccount() != null) {
@@ -191,6 +229,10 @@ public class ATMInterface {
         atm.logout();
     }
     
+    /**
+     * Get integer input from user with validation
+     * @return Integer value entered by user
+     */
     private int getIntInput() {
         while (true) {
             try {
@@ -202,6 +244,10 @@ public class ATMInterface {
         }
     }
     
+    /**
+     * Get double input from user with validation
+     * @return Double value entered by user
+     */
     private double getDoubleInput() {
         while (true) {
             try {
@@ -218,13 +264,21 @@ public class ATMInterface {
         }
     }
     
+    /**
+     * Wait for user to press Enter to continue
+     */
     private void pressEnterToContinue() {
         System.out.print("\nPress Enter to continue...");
         scanner.nextLine();
     }
     
+    /**
+     * Main method to start the application
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         ATMInterface atmInterface = new ATMInterface();
         atmInterface.start();
     }
 }
+
